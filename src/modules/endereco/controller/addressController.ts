@@ -5,16 +5,16 @@ import RemoveAddresService from "../services/RemoveAddresService";
 import ShowAddresService from "../services/ShowAddresService";
 import UpdateAddresService from "../services/UpdateAddresService";
 
-export default class AddressController{
-    public async index(request: Request, response: Response): Promise<Response>{
+export default class AddressController {
+    public async index(request: Request, response: Response): Promise<Response> {
         const listAddress = new ListAddresService()
         const address = await listAddress.execute()
 
         return response.json(address)
 
     }
-    public async show(request: Request, response: Response): Promise<Response>{
-        const {id} = request.params
+    public async show(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params
         const showAddress = new ShowAddresService()
         const address = await showAddress.execute(id)
 
@@ -23,9 +23,9 @@ export default class AddressController{
     }
 
 
-    public async create(request:Request, response:Response):Promise<Response>{
-        const {logradouro,bairro,numero} = request.body;
-        const createAddress  = new CreateAddresService()
+    public async create(request: Request, response: Response): Promise<Response> {
+        const { logradouro, bairro, numero } = request.body;
+        const createAddress = new CreateAddresService()
 
         const address = await createAddress.execute({
             logradouro,
@@ -36,9 +36,9 @@ export default class AddressController{
         return response.json(address)
     }
 
-    public async update(request:Request, response:Response): Promise<Response>{
-        const {id} = request.params
-        const {logradouro,bairro,numero} = request.body;
+    public async update(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params
+        const { logradouro, bairro, numero } = request.body;
         const updateAddress = new UpdateAddresService()
         const address = await updateAddress.execute({
             id,
@@ -50,8 +50,8 @@ export default class AddressController{
         return response.json(address)
     }
 
-    public async remove(request: Request, response: Response): Promise<Response>{
-        const {id} = request.params
+    public async remove(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params
         const removeAddress = new RemoveAddresService()
         const address = await removeAddress.execute(id)
 

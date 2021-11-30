@@ -4,24 +4,24 @@ import AddressRepository from "../typeorm/repository/AddressRepository";
 
 
 
-interface IRequest{
-    id:string;
+interface IRequest {
+    id: string;
 }
 
 
-export default class RemoveAddresService{
-    public async execute({id}:IRequest): Promise<Address | undefined> {
+export default class RemoveAddresService {
+    public async execute({ id }: IRequest): Promise<void | undefined> {
         const addressRepository = getCustomRepository(AddressRepository)
 
         const address = await addressRepository.findOne(id)
 
-        if(!address){
-            throw new Error(`Product not found`)
+        if (!address) {
+            throw new Error("endereço não encontrado")
         }
 
         await addressRepository.delete(address)
 
-        return address
+
 
     }
 }

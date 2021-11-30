@@ -9,7 +9,7 @@ interface IRequest {
 }
 
 export default class RemoveClientService {
-    public async execute({ id }: IRequest): Promise<Client> {
+    public async execute({ id }: IRequest): Promise<void> {
         const clientRepository = getCustomRepository(ClientRepository)
 
         const client = await clientRepository.findOne(id)
@@ -20,6 +20,6 @@ export default class RemoveClientService {
 
         await clientRepository.remove(client)
 
-        return client
+
     }
 }
